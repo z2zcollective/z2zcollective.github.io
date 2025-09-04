@@ -19,9 +19,37 @@
 				z-index: 1000;    /* pour rester au-dessus du contenu */
 			}
 			
+			/* Navbar centrée */
+.navbar {
+  display: flex;               /* active flexbox */
+  justify-content: center;     /* centre horizontalement les liens */
+  gap: 20px;                   /* espace entre les liens */
+  padding: 20px 0; /* 20px en haut et en bas, 0 à gauche et droite */
+}
+
+/* Style des liens */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: background 0.3s;
+}
+
+.navbar a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+			
 			main {
 				display: flex;           /* active flexbox */
 				justify-content: center; /* centre horizontalement */
+			}
+			
+			ul {
+				list-style: none; /* supprime les puces */
+				padding-left: 0;  /* optionnel : supprime le retrait par défaut */
+				margin: 0;        /* optionnel : supprime la marge */
 			}
 		
 			canvas {
@@ -41,6 +69,10 @@
 	<body>
 		<header>
 			<canvas id="waveCanvas"></canvas>
+			<nav class="navbar">
+				<a href="#accueil">Sons actuels</a>
+				<a href="#contact">Proposer un son</a>
+			</nav>
 		</header>
 		
 		<main>

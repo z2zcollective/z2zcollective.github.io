@@ -19,12 +19,14 @@
 				z-index: 1000;    /* pour rester au-dessus du contenu */
 				box-shadow: 0px 20px 20px black;
 			}
-			
-			/* Navbar centrée */
+
+
+
+/* Navbar centrée */
 .navbar {
-  display: flex;               /* active flexbox */
-  justify-content: center;     /* centre horizontalement les liens */
-  gap: 20px;                   /* espace entre les liens */
+  display: flex;
+  justify-content: center;
+  gap: 20px;
   padding: 20px 0 0 0; /* 20px en haut et en bas, 0 à gauche et droite */
 }
 
@@ -34,13 +36,14 @@
   text-decoration: none;
   font-weight: bold;
   padding: 5px 10px;
-  transition: background 0.3s;
 }
 
-.navbar a:hover {
-  background-color: #555;
-  border-radius: 5px;
+/* Lien actif souligné */
+.navbar a.active {
+  text-decoration: underline;
 }
+
+
 			
 			main {
 				display: flex;           /* active flexbox */
@@ -71,8 +74,8 @@
 		<header>
 			<canvas id="waveCanvas"></canvas>
 			<nav class="navbar">
-				<a href="#accueil">Sons actuels</a>
-				<a href="#contact">Proposer un son</a>
+				<a href="#submitted" class="nav-link active">Sons déjà proposés</a>
+				<a href="#submit" class="nav-link">Proposer un son</a>
 			</nav>
 		</header>
 		
@@ -157,6 +160,20 @@
 				}
 				draw();
 			};
+		</script>
+		<script>
+			// Sélectionne tous les liens
+			const links = document.querySelectorAll('.nav-link');
+
+			// Ajoute un listener à chaque lien
+			links.forEach(link => {
+				link.addEventListener('click', () => {
+					// Supprime la classe active de tous les liens
+					links.forEach(l => l.classList.remove('active'));
+					// Ajoute la classe active au lien cliqué
+					link.classList.add('active');
+				});
+			});
 		</script>
 	</body>
 </html>

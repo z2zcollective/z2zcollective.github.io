@@ -34,7 +34,7 @@
 .navbar a {
   color: white;
   text-decoration: none;
-  font-weight: bold;
+  font-size: 1.2em;
   padding: 5px 10px;
 }
 
@@ -52,8 +52,16 @@
 			
 			ul {
 				list-style: none; /* supprime les puces */
-				padding-left: 0;  /* optionnel : supprime le retrait par défaut */
-				margin: 0;        /* optionnel : supprime la marge */
+				padding: 0;  /* optionnel : supprime le retrait par défaut */
+				text-align: center;
+			}
+			
+			ul li:not(:first-child) {
+				margin-top: 15px;
+			}
+			
+			ul li:first-child {
+				margin-top: 25px;
 			}
 		
 			canvas {
@@ -74,23 +82,32 @@
 		<header>
 			<canvas id="waveCanvas"></canvas>
 			<nav class="navbar">
-				<a href="#submitted" class="nav-link active">Sons déjà proposés</a>
-				<a href="#submit" class="nav-link">Proposer un son</a>
+				<a href="#submitted" class="nav-link active">SONS DÉJÀ PROPOSÉS</a>
+				<a href="#submit" class="nav-link">PROPOSER UN SON</a>
 			</nav>
 		</header>
 		
 		<main>
 			<div class="list-container">
 				<ul>
-					<li>Item 1</li>
-					<li>Item 2</li>
-					<li>Item 3</li>
-					<li>Item 4</li>
-					<li>Item 5</li>
-					<li>Item 6</li>
-					<li>Item 7</li>
-					<li>Item 8</li>
-					<li>Item 9</li>
+					<li>Flores (Meera (NO) Remix) - Emanuel Satie & Maga</li>
+					<li>Malive, Gogoia, Morgado feat. Gabriel Paes- Quintal (Emanuel Satie, Tim Engelhardt Remix)</li>
+					<li>NOOD (FR) - Solarmor</li>
+					<li>I Adore You (A-Clark & VINNY Remix) [feat. Daecolm]</li>
+					<li>Olof Dreier - Rossa Rugosa (Francisco Garcia Remix)</li>
+					<li>Dennis Louvra, Lilya Mandre - Paradis (Extended Mix)</li>
+					<li>Mussulo (unfazed Remix)</li>
+					<li>Addicted to You (Mont Rouge Remix)</li>
+					<li>Flashing Lights (Deco (BE) & PAEDE Remix)</li>
+					<li>Flores (Meera (NO) Remix) - Emanuel Satie & Maga</li>
+					<li>Malive, Gogoia, Morgado feat. Gabriel Paes- Quintal (Emanuel Satie, Tim Engelhardt Remix)</li>
+					<li>NOOD (FR) - Solarmor</li>
+					<li>I Adore You (A-Clark & VINNY Remix) [feat. Daecolm]</li>
+					<li>Olof Dreier - Rossa Rugosa (Francisco Garcia Remix)</li>
+					<li>Dennis Louvra, Lilya Mandre - Paradis (Extended Mix)</li>
+					<li>Mussulo (unfazed Remix)</li>
+					<li>Addicted to You (Mont Rouge Remix)</li>
+					<li>Flashing Lights (Deco (BE) & PAEDE Remix)</li>
 					<li>Item 10</li>
 					<li>Item 11</li>
 					<li>Item 12</li>

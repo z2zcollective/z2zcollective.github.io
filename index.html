@@ -38,7 +38,7 @@
   display: flex;
   justify-content: center;
   gap: 20px;
-  padding: 20px 0 0 0; /* 20px en haut et en bas, 0 à gauche et droite */
+  padding: 20px 0 0 0; /* 20px en haut, 0 en bas et à gauche/droite */
 }
 
 /* Style des liens */
@@ -70,20 +70,18 @@
 			main {
 				display: flex;           /* active flexbox */
 				justify-content: center; /* centre horizontalement */
+				margin-top: 25px;
 			}
 			
 			ul {
 				list-style: none; /* supprime les puces */
 				padding: 0;  /* optionnel : supprime le retrait par défaut */
 				text-align: center;
+				margin: 0px 20px 20px 20px;
 			}
 			
 			ul li:not(:first-child) {
 				margin-top: 15px;
-			}
-			
-			ul li:first-child {
-				margin-top: 25px;
 			}
 			
 			.listen {
@@ -107,6 +105,14 @@
 					width: 50vw;
 				}
 			}
+
+			.content {
+				display: none;
+			}
+
+			.content.visible {
+				display: block;
+			}
 		</style>
 	</head>
 	<body>
@@ -119,7 +125,7 @@
 		</header>
 		
 		<main>
-			<div class="list-container">
+			<div id="submitted" class="content visible">
 				<ul>
 					<li>Flores (Meera (NO) Remix) - Emanuel Satie & Maga&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
 					<li>Malive, Gogoia, Morgado feat. Gabriel Paes- Quintal (Emanuel Satie, Tim Engelhardt Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
@@ -139,50 +145,35 @@
 					<li>Mussulo (unfazed Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
 					<li>Addicted to You (Mont Rouge Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
 					<li>Flashing Lights (Deco (BE) & PAEDE Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
-					<li>Item 10</li>
-					<li>Item 11</li>
-					<li>Item 12</li>
-					<li>Item 13</li>
-					<li>Item 1</li>
-					<li>Item 2</li>
-					<li>Item 3</li>
-					<li>Item 4</li>
-					<li>Item 5</li>
-					<li>Item 6</li>
-					<li>Item 7</li>
-					<li>Item 8</li>
-					<li>Item 9</li>
-					<li>Item 10</li>
-					<li>Item 11</li>
-					<li>Item 12</li>
-					<li>Item 13</li>
-					<li>Item 1</li>
-					<li>Item 2</li>
-					<li>Item 3</li>
-					<li>Item 4</li>
-					<li>Item 5</li>
-					<li>Item 6</li>
-					<li>Item 7</li>
-					<li>Item 8</li>
-					<li>Item 9</li>
-					<li>Item 10</li>
-					<li>Item 11</li>
-					<li>Item 12</li>
-					<li>Item 13</li>
-					<li>Item 1</li>
-					<li>Item 2</li>
-					<li>Item 3</li>
-					<li>Item 4</li>
-					<li>Item 5</li>
-					<li>Item 6</li>
-					<li>Item 7</li>
-					<li>Item 8</li>
-					<li>Item 9</li>
-					<li>Item 10</li>
-					<li>Item 11</li>
-					<li>Item 12</li>
-					<li>Item 13</li>
+					<li>Malive, Gogoia, Morgado feat. Gabriel Paes- Quintal (Emanuel Satie, Tim Engelhardt Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>NOOD (FR) - Solarmor&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>I Adore You (A-Clark & VINNY Remix) [feat. Daecolm]&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>Olof Dreier - Rossa Rugosa (Francisco Garcia Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>Dennis Louvra, Lilya Mandre - Paradis (Extended Mix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>Mussulo (unfazed Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>Addicted to You (Mont Rouge Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
+					<li>Flashing Lights (Deco (BE) & PAEDE Remix)&nbsp;&nbsp;<a href="/" class="listen">🎧</a></li>
 				</ul>
+			</div>
+
+			<div id="submit" class="content">
+				<form id="myForm">
+					<label>
+						Message :  
+						<input type="text" name="message" required>
+					</label>
+					<br><br>
+					
+					<label>
+						Instagram :  
+						<input type="text" name="instagram">
+					</label>
+					<br><br>
+					
+					<button type="submit">Envoyer</button>
+				</form>
+
+				<p id="status"></p>
 			</div>
 		</main>
 		
@@ -209,17 +200,64 @@
 				draw();
 			};
 		</script>
-		<script>
-			// Sélectionne tous les liens
-			const links = document.querySelectorAll('.nav-link');
 
-			// Ajoute un listener à chaque lien
-			links.forEach(link => {
-				link.addEventListener('click', () => {
-					// Supprime la classe active de tous les liens
-					links.forEach(l => l.classList.remove('active'));
-					// Ajoute la classe active au lien cliqué
-					link.classList.add('active');
+		<script>
+			const links = document.querySelectorAll('.nav-link');
+const contents = document.querySelectorAll('.content');
+
+function showSectionFromHash() {
+  let hash = window.location.hash || "#submitted"; // par défaut
+  // Supprimer "active" de tous les liens
+  links.forEach(l => l.classList.remove('active'));
+  // Cacher tout le contenu
+  contents.forEach(c => c.classList.remove('visible'));
+  // Trouver le lien et la section correspondants
+  const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+  const activeContent = document.querySelector(hash);
+  if (activeLink && activeContent) {
+    activeLink.classList.add('active');
+    activeContent.classList.add('visible');
+  }
+}
+
+// Quand on clique sur un lien
+links.forEach(link => {
+  link.addEventListener('click', e => {
+    // le hash change, donc on laisse faire, mais on met à jour l'affichage
+    showSectionFromHash();
+  });
+});
+
+// Quand on charge la page (ou si on change le hash manuellement)
+window.addEventListener('load', showSectionFromHash);
+window.addEventListener('hashchange', showSectionFromHash);
+		</script>
+
+		<script>
+			const scriptURL = "https://script.google.com/macros/s/AKfycbw0fcxgSkuVUWhspMbBAslPYBVCxIrZyjc2K5ALXOIeN-Gq0no214azDIniVUVP21HG/exec";
+			const form = document.getElementById("myForm");
+			const status = document.getElementById("status");
+
+			form.addEventListener("submit", e => {
+				e.preventDefault();
+				
+				const data = {
+					message: form.message.value,
+					instagram: form.instagram.value
+				};
+
+				fetch(scriptURL, {
+					method: "POST",
+					body: JSON.stringify(data)
+				})
+				.then(res => res.json())
+				.then(response => {
+					status.textContent = "✅ Données enregistrées !";
+					form.reset();
+				})
+				.catch(err => {
+					console.error("Erreur :", err);
+					status.textContent = "❌ Erreur lors de l’envoi";
 				});
 			});
 		</script>

@@ -34,8 +34,10 @@
 .navbar a {
   color: white;
   text-decoration: none;
-  font-size: 1.2em;
+  font-size: 1.1em;
   padding: 5px 10px;
+  text-align: center;   /* centre le texte multi-lignes */
+  display: inline-block; /* nécessaire pour que text-align fonctionne sur le lien */
 }
 
 /* Lien actif souligné */
@@ -78,6 +80,7 @@
 				height: auto;
 				display: block;
 				margin: auto;
+				background-color: black;
 			}
 
 			@media (max-width: 768px) {

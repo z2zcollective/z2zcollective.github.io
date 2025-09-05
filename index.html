@@ -20,7 +20,7 @@
 				position: sticky; /* clé pour rendre le header sticky */
 				top: 0;           /* reste en haut */
 				background-color: black;
-				padding: 20px 20px;
+				padding: 20px 60px;
 				z-index: 1000;    /* pour rester au-dessus du contenu */
 				box-shadow: 0px 20px 20px black;
 			}
@@ -41,6 +41,7 @@
   text-decoration: none;
   font-size: 1.1em;
   padding: 5px 10px;
+  flex: 1;
   text-align: center;   /* centre le texte multi-lignes */
   display: inline-block; /* nécessaire pour que text-align fonctionne sur le lien */
 }
@@ -98,8 +99,8 @@
 		<header>
 			<canvas id="waveCanvas"></canvas>
 			<nav class="navbar">
-				<a href="#submitted" class="nav-link active">SONS DÉJÀ PROPOSÉS</a>
-				<a href="#submit" class="nav-link">PROPOSER UN SON</a>
+				<a style="background-color: #1A9EA0" href="#submitted" class="nav-link active">SONS DÉJÀ PROPOSÉS</a>
+				<a style="background-color: #61BDC1" href="#submit" class="nav-link">PROPOSER UN SON</a>
 			</nav>
 		</header>
 		

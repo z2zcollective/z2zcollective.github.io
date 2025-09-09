@@ -268,15 +268,15 @@ input:checked + .slider:before {
     <input type="text" id="instagram" name="instagram">
   </div>
 
-  <label for="identifier" class="toggle-label">
+  <label for="identify" class="toggle-label">
       On t'identifie lors de la publication Instagram ?
     </label>
   <div class="form-group toggle-group">
     <label class="switch">
-      <input type="checkbox" id="identifier" name="identifier">
+      <input type="checkbox" id="identify" name="identify" checked>
       <span class="slider"></span>
     </label>
-	<span class="toggle-text">&nbsp;&nbsp;Non</span>
+	<span id="identify_label" class="toggle-text">&nbsp;&nbsp;Oui</span>
   </div>
 
   <button type="submit">Envoyer</button>
@@ -342,6 +342,25 @@ links.forEach(link => {
 window.addEventListener('load', showSectionFromHash);
 window.addEventListener('hashchange', showSectionFromHash);
 		</script>
+
+		
+
+		<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const toggle = document.getElementById("identify");
+  const toggleText = document.getElementById("identify_label");
+
+  // Force ON au chargement (même si le navigateur avait mémorisé OFF)
+  toggle.checked = true;
+  toggleText.innerHTML = "&nbsp;&nbsp;Oui";
+
+  // Gérer les changements utilisateur
+  toggle.addEventListener("change", () => {
+    toggleText.innerHTML = toggle.checked ? "&nbsp;&nbsp;Oui" : "&nbsp;&nbsp;Non";
+  });
+});
+</script>
+
 
 		<script>
 			const scriptURL = "https://script.google.com/macros/s/AKfycbw0fcxgSkuVUWhspMbBAslPYBVCxIrZyjc2K5ALXOIeN-Gq0no214azDIniVUVP21HG/exec";

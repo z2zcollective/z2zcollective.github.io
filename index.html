@@ -32,42 +32,38 @@
 				}
 			}
 
+			/* Navbar centrée */
+			.navbar {
+				display: flex;
+				justify-content: center;
+				gap: 20px;
+				padding: 20px 0 0 0; /* 20px en haut, 0 en bas et à gauche/droite */
+			}
 
+			/* Style des liens */
+			.navbar a {
+				color: white;
+				text-decoration: none;
+				font-size: 1.1em;
+				padding: 5px 10px;
+				flex: 1;
+				text-align: center;   /* centre le texte multi-lignes */
+				display: inline-block; /* nécessaire pour que text-align fonctionne sur le lien */
+				background-color: #61BDC1;
+			}
 
-/* Navbar centrée */
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px 0 0 0; /* 20px en haut, 0 en bas et à gauche/droite */
-}
+			/* Lien actif souligné */
+			.navbar a.active {
+				text-decoration: underline;
+				background-color: #1A9EA0;
+			}
 
-/* Style des liens */
-.navbar a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1em;
-  padding: 5px 10px;
-  flex: 1;
-  text-align: center;   /* centre le texte multi-lignes */
-  display: inline-block; /* nécessaire pour que text-align fonctionne sur le lien */
-  background-color: #61BDC1;
-}
+			@media (min-width: 769px) {
+				.navbar a:hover {
+					background-color: #90D0D3;   /* couleur hover */
+				}
+			}
 
-/* Lien actif souligné */
-.navbar a.active {
-  text-decoration: underline;
-  background-color: #1A9EA0;
-}
-
-@media (min-width: 769px) {
-	.navbar a:hover {
-	  background-color: #90D0D3;   /* couleur hover */
-	}
-}
-
-
-			
 			main {
 				display: flex;           /* active flexbox */
 				justify-content: center; /* centre horizontalement */
@@ -114,6 +110,16 @@
 			.content.visible {
 				display: block;
 			}
+
+			#submit {
+				padding: 0 20vw;
+			}
+
+			@media (max-width: 768px) {
+				#submit {
+					padding: 0 10vw;
+				}
+			}
 		</style>
 	</head>
 	<body>
@@ -158,6 +164,13 @@
 			</div>
 
 			<div id="submit" class="content">
+				<p>
+					<b>Concept :</b>
+					dsfbds dsjfbhdshf  sdfjbdsfhdbs dsjfbdshfbdsh dsfbfdshjbfds dshfbdshfb dsfbdshjfbdsh dsfhjbdsfhbdshf dshfbdhsfbd
+					qsdjknsf dsfhjbdshf dshfbdshbf dsjhfbdshjfb dsjhfbdshbfds jdhsbfhdsfbdsh dshfbdshfbds
+					dsjhbfdhsb dshfbdshfb dshfbdhfsb dshfbdbf sdhfbdshbf dskfjdsfkjnds dsfkbdshfbcx dsfhbdshbf dshfbdsfbh
+				</p>
+
 				<form id="myForm">
 					<label>
 						Message :  

@@ -212,7 +212,14 @@
 				border: 1px solid #ccc;
 				border-radius: 4px;
 				margin-bottom: 8px;
+				font-size: 16px;
 			}
+
+			/*@media (max-width: 768px) {
+				input[type="text"] {
+					font-size: 18px;
+				}
+			}*/
 
 			.input-group {
 				display: flex;          /* met input + bouton côte à côte */
@@ -297,10 +304,6 @@
   <div id="songs_inputs" class="form-group">
     <label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
     <input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
-	<!--<div class="input-group">
-  <input type="text" placeholder="SoundCloud, Youtube, Spotify, ...">
-  <button type="button">x</button>
-</div>-->
   </div>
   <button type="button" class="add_button" onclick="add_row()">+ Ajouter un son</button>
 

@@ -187,7 +187,7 @@
 				transform: translateX(22px);
 			}
 
-			.add_button {
+			.form_button {
 				background-color: #1A9EA0; /* Green */
 				color: white;
 				border: none;
@@ -201,8 +201,14 @@
 				margin-bottom: 25px;
 			}
 
+			.send_button {
+				padding: 7px 14px;
+				display: block;
+				margin: 0 auto;
+			}
+
 			@media (min-width: 769px) {
-				.add_button:hover {
+				.form_button:hover {
 					background-color: #90D0D3;
 				}
 			}
@@ -214,12 +220,6 @@
 				margin-bottom: 8px;
 				font-size: 16px;
 			}
-
-			/*@media (max-width: 768px) {
-				input[type="text"] {
-					font-size: 18px;
-				}
-			}*/
 
 			.input-group {
 				display: flex;          /* met input + bouton côte à côte */
@@ -305,7 +305,7 @@
     <label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
     <input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
   </div>
-  <button type="button" class="add_button" onclick="add_row()">+ Ajouter un son</button>
+  <button type="button" class="form_button" onclick="add_row()">+ Ajouter un son</button>
 
   <h4 style="display: none;">PS : C'est normal que tes sons n'apparaissent pas tout de suite dans la liste des sons proposés, c'est le temps qu'on la mette à jour (1 fois/jour).<br>
 	  Edit PS : Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
@@ -319,7 +319,7 @@
   <label for="identify" class="toggle-label">
       On t'identifie lors de la publication Instagram ?
   </label>
-  <div class="form-group toggle-group" style="margin-bottom: 25px;">
+  <div class="form-group toggle-group" style="margin-bottom: 20px;">
     <label class="switch">
       <input type="checkbox" id="identify" name="identify" checked>
       <span class="slider"></span>
@@ -327,7 +327,7 @@
 	<span id="identify_label" class="toggle-text">&nbsp;&nbsp;Oui</span>
   </div>
 
-  <button type="submit">Envoyer</button>
+  <button type="submit" class="form_button send_button">Envoyer</button>
 </form>
 
 <p id="status"></p>

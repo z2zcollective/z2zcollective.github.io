@@ -219,21 +219,22 @@
 				border: 1px solid #ccc;
 				border-right: none;     /* évite une double bordure avec le bouton */
 				border-radius: 4px 0 0 4px;
-				margin: 0;
+				margin-bottom: 8px;
 			}
 
 			.input-group button {
 				flex: 0 0 auto;         /* bouton ajuste sa largeur à son contenu */
 				padding: 8px 12px;
 				border: 1px solid #ccc;
-				background: #AB1D23;
+				background: #D42427;
 				color: white;
 				cursor: pointer;
 				border-radius: 0 4px 4px 0;
+				margin-bottom: 8px;
 			}
 
 			.input-group button:hover {
-				background: #D42427;
+				background: #ED282C;
 			}
 		</style>
 	</head>
@@ -289,6 +290,10 @@
     <label for="message1" style="margin-bottom: 7px;">Nom ou lien du son :</label>
     <input type="text" id="message1" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
 	<!--<input type="text" id="message2" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>-->
+	<div class="input-group">
+  <input type="text" placeholder="SoundCloud, Youtube, Spotify, ...">
+  <button type="button">x</button>
+</div>
   </div>
   <button type="button" class="add_button">+ Ajouter un son</button>
 
@@ -313,12 +318,6 @@
   </div>
 
   <button type="submit">Envoyer</button>
-
-  <div class="input-group">
-  <input type="text" placeholder="Écris quelque chose...">
-  <button type="button">x</button>
-</div>
-
 </form>
 
 <p id="status"></p>

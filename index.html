@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>z2z</title>
 		<link rel="icon" type="image/png" href="src/favicon_512x512.png">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<style>
 			html, body {
 				margin: 0;
@@ -201,7 +202,7 @@
 				margin-bottom: 25px;
 			}
 
-			.send_button {
+			#send_button {
 				padding: 8px 14px;
 				display: block;
 				margin: 0 auto;
@@ -254,6 +255,10 @@
 
 			p {
 				all: unset;
+			}
+
+			.fa {
+				margin-right: 6px;
 			}
 		</style>
 	</head>
@@ -328,7 +333,7 @@
 						<span id="identify_label" class="toggle-text">&nbsp;&nbsp;Oui</span>
 					</div>
 				
-					<button type="submit" class="form_button send_button">Envoyer</button>
+					<button type="submit" id="send_button" class="form_button">Envoyer</button>
 				</form>
 
 				<div style="text-align: center;">
@@ -440,6 +445,7 @@
 			const status = document.getElementById("status");
 			const toggle = document.getElementById("identify");
 			const toggleText = document.getElementById("identify_label");
+			const sendButton = document.getElementById("send_button");
 
 			form.addEventListener("submit", e => {
 				e.preventDefault();
@@ -461,6 +467,9 @@
 					identifier: toggle.checked ? "oui" : "non"
 				};
 
+				sendButton.innerHTML = "<i class='fa fa-circle-o-notch fa-spin'></i>Envoi en cours"
+				sendButton.disabled = true;
+
 				fetch(scriptURL, {
 					method: "POST",
 					body: JSON.stringify(data)
@@ -469,17 +478,10 @@
 				.then(() => {
 					document.getElementById("concept").style.display = "none";
 					form.style.display = "none";
-					//status.textContent = "✅ Données enregistrées !";
 					status.innerHTML = `
 						✅ Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
 						PS : Si certains sons ne matchent pas avec le reste, on les garde pour un prochain set :)
 					`;
-					/*
-					<h4 style="display: none;">PS : C'est normal que tes sons n'apparaissent pas tout de suite dans la liste des sons
-						proposés, c'est le temps qu'on la mette à jour (1 fois/jour).<br>
-						Edit PS : Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
-						PS2 : Si certains sons ne matchent pas avec le reste, on les garde pour un prochain set :)</h4>
-					*/
 					form.reset();
 					toggleText.innerHTML = "&nbsp;&nbsp;Oui";
 				})

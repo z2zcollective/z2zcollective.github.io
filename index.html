@@ -138,12 +138,12 @@ label {
   font-weight: bold;
 }
 
-input[type="text"] {
+/*input[type="text"] {
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
   margin-bottom: 8px;
-}
+}*/
 
 /* Toggle switch */
 .toggle-group {
@@ -207,6 +207,35 @@ input:checked + .slider:before {
   border-radius: 0;
   margin-bottom: 25px;
 }
+
+.input-group {
+  display: flex;          /* met input + bouton côte à côte */
+  width: 100%;            /* occupe toute la largeur du conteneur parent */
+}
+
+.input-group input {
+  flex: 1;                /* l'input prend tout l'espace restant */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-right: none;     /* évite une double bordure avec le bouton */
+  border-radius: 4px 0 0 4px;
+}
+
+.input-group button {
+  flex: 0 0 auto;         /* bouton ajuste sa largeur à son contenu */
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  background: #D42427;
+  color: white;
+  cursor: pointer;
+  border-radius: 0 4px 4px 0;
+}
+
+.input-group button:hover {
+  background: #ddd;
+}
+
+
 		</style>
 	</head>
 	<body>
@@ -285,6 +314,12 @@ input:checked + .slider:before {
   </div>
 
   <button type="submit">Envoyer</button>
+
+  <div class="input-group">
+  <input type="text" placeholder="Écris quelque chose...">
+  <button type="button">x</button>
+</div>
+
 </form>
 
 <p id="status"></p>

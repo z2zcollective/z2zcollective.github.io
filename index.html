@@ -201,6 +201,12 @@
 				margin-bottom: 25px;
 			}
 
+			@media (min-width: 769px) {
+				.add_button:hover {
+					background-color: #90D0D3;
+				}
+			}
+
 			input[type="text"] {
 				padding: 8px;
 				border: 1px solid #ccc;
@@ -233,8 +239,10 @@
 				margin-bottom: 8px;
 			}
 
-			.input-group button:hover {
-				background: #ED282C;
+			@media (min-width: 769px) {
+				.input-group button:hover {
+					background: #ED282C;
+				}
 			}
 		</style>
 	</head>
@@ -282,20 +290,19 @@
 			<div id="submit" class="content">
 				
 					<b>Concept :</b>
-					On va construire un set d'environ 1h avec les sons qui nous sont suggérés, et on le postera sur nos réseaux.
+					On va enregistrer un set d'environ 1h avec les sons qui nous sont suggérés, et on le postera sur nos réseaux.
 					N'hésite pas à proposer le maximum de sons, on fera au mieux pour les intégrer dans le set.
 
 				<form id="myForm">
-  <div class="form-group">
-    <label for="message1" style="margin-bottom: 7px;">Nom ou lien du son :</label>
-    <input type="text" id="message1" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
-	<!--<input type="text" id="message2" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>-->
-	<div class="input-group">
+  <div id="songs_inputs" class="form-group">
+    <label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
+    <input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
+	<!--<div class="input-group">
   <input type="text" placeholder="SoundCloud, Youtube, Spotify, ...">
   <button type="button">x</button>
-</div>
+</div>-->
   </div>
-  <button type="button" class="add_button">+ Ajouter un son</button>
+  <button type="button" class="add_button" onclick="add_row()">+ Ajouter un son</button>
 
   <h4 style="display: none;">PS : C'est normal que tes sons n'apparaissent pas tout de suite dans la liste des sons proposés, c'est le temps qu'on la mette à jour (1 fois/jour).<br>
 	  Edit PS : Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
@@ -303,7 +310,7 @@
 
   <div class="form-group" style="margin-bottom: 25px;">
     <label for="instagram" style="margin-bottom: 7px;">Ton @ sur Insta (suis-nous !):</label>
-    <input type="text" id="instagram" name="instagram">
+    <input type="text" id="instagram" name="instagram" required>
   </div>
 
   <label for="identify" class="toggle-label">
@@ -381,7 +388,26 @@ window.addEventListener('load', showSectionFromHash);
 window.addEventListener('hashchange', showSectionFromHash);
 		</script>
 
-		
+		<script>
+			function add_row() {
+				// Create a new row with input field and delete button
+				const newRow = document.createElement('div');
+				newRow.classList.add('input-group');
+				newRow.innerHTML = `
+					<input type="text" placeholder="SoundCloud, Youtube, Spotify, ...">
+  					<button type="button" onclick="delete_row(event)">x</button>
+				`;
+
+				// Append the new row to the container
+				document.getElementById('songs_inputs').appendChild(newRow);
+            };
+
+			function delete_row(ev) {
+                // Find the row and remove it from the DOM
+                const rowToDelete = ev.target.closest('.input-group');
+                rowToDelete.remove();
+            };
+		</script>
 
 		<script>
 document.addEventListener("DOMContentLoaded", () => {

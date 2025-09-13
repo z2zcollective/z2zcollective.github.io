@@ -202,7 +202,7 @@
 			}
 
 			.send_button {
-				padding: 7px 14px;
+				padding: 8px 14px;
 				display: block;
 				margin: 0 auto;
 			}
@@ -251,6 +251,10 @@
 					background: #ED282C;
 				}
 			}
+
+			p {
+				all: unset;
+			}
 		</style>
 	</head>
 	<body>
@@ -295,43 +299,41 @@
 			</div>
 
 			<div id="submit" class="content">
-				
+				<p id="concept">
 					<b>Concept :</b>
 					On va enregistrer un set d'environ 1h avec les sons qui nous sont suggérés, et on le postera sur nos réseaux.
 					N'hésite pas à proposer le maximum de sons, on fera au mieux pour les intégrer dans le set.
+				</p>
 
 				<form id="myForm">
-  <div id="songs_inputs" class="form-group">
-    <label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
-    <input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
-  </div>
-  <button type="button" class="form_button" onclick="add_row()">+ Ajouter un son</button>
+					<div id="songs_inputs" class="form-group">
+						<label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
+						<input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
+					</div>
+					<button type="button" class="form_button" onclick="add_row()">+ Ajouter un son</button>
+				
+					<div class="form-group" style="margin-bottom: 25px;">
+						<label for="instagram" style="margin-bottom: 7px;">Ton @ sur Insta (suis-nous !):</label>
+						<input type="text" id="instagram" name="instagram" required>
+					</div>
+				
+					<label for="identify" class="toggle-label">
+						On t'identifie lors de la publication Instagram ?
+					</label>
+					<div class="form-group toggle-group" style="margin-bottom: 25px;">
+						<label class="switch">
+							<input type="checkbox" id="identify" name="identify" checked>
+							<span class="slider"></span>
+						</label>
+						<span id="identify_label" class="toggle-text">&nbsp;&nbsp;Oui</span>
+					</div>
+				
+					<button type="submit" class="form_button send_button">Envoyer</button>
+				</form>
 
-  <h4 style="display: none;">PS : C'est normal que tes sons n'apparaissent pas tout de suite dans la liste des sons proposés, c'est le temps qu'on la mette à jour (1 fois/jour).<br>
-	  Edit PS : Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
-	  PS2 : Si certains sons ne matchent pas avec le reste, on les garde pour un prochain set :)</h4>
-
-  <div class="form-group" style="margin-bottom: 25px;">
-    <label for="instagram" style="margin-bottom: 7px;">Ton @ sur Insta (suis-nous !):</label>
-    <input type="text" id="instagram" name="instagram" required>
-  </div>
-
-  <label for="identify" class="toggle-label">
-      On t'identifie lors de la publication Instagram ?
-  </label>
-  <div class="form-group toggle-group" style="margin-bottom: 20px;">
-    <label class="switch">
-      <input type="checkbox" id="identify" name="identify" checked>
-      <span class="slider"></span>
-    </label>
-	<span id="identify_label" class="toggle-text">&nbsp;&nbsp;Oui</span>
-  </div>
-
-  <button type="submit" class="form_button send_button">Envoyer</button>
-</form>
-
-<p id="status"></p>
-
+				<div style="text-align: center;">
+					<p id="status"></p>
+				</div>
 			</div>
 		</main>
 		
@@ -361,34 +363,34 @@
 
 		<script>
 			const links = document.querySelectorAll('.nav-link');
-const contents = document.querySelectorAll('.content');
+			const contents = document.querySelectorAll('.content');
 
-function showSectionFromHash() {
-  let hash = window.location.hash || "#submitted"; // par défaut
-  // Supprimer "active" de tous les liens
-  links.forEach(l => l.classList.remove('active'));
-  // Cacher tout le contenu
-  contents.forEach(c => c.classList.remove('visible'));
-  // Trouver le lien et la section correspondants
-  const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
-  const activeContent = document.querySelector(hash);
-  if (activeLink && activeContent) {
-    activeLink.classList.add('active');
-    activeContent.classList.add('visible');
-  }
-}
+			function showSectionFromHash() {
+				let hash = window.location.hash || "#submitted"; // par défaut
+				// Supprimer "active" de tous les liens
+				links.forEach(l => l.classList.remove('active'));
+				// Cacher tout le contenu
+				contents.forEach(c => c.classList.remove('visible'));
+				// Trouver le lien et la section correspondants
+				const activeLink = document.querySelector(`.nav-link[href="${hash}"]`);
+				const activeContent = document.querySelector(hash);
+				if (activeLink && activeContent) {
+					activeLink.classList.add('active');
+					activeContent.classList.add('visible');
+				}
+			}
 
-// Quand on clique sur un lien
-links.forEach(link => {
-  link.addEventListener('click', e => {
-    // le hash change, donc on laisse faire, mais on met à jour l'affichage
-    showSectionFromHash();
-  });
-});
+			// Quand on clique sur un lien
+			links.forEach(link => {
+				link.addEventListener('click', e => {
+					// le hash change, donc on laisse faire, mais on met à jour l'affichage
+					showSectionFromHash();
+				});
+			});
 
-// Quand on charge la page (ou si on change le hash manuellement)
-window.addEventListener('load', showSectionFromHash);
-window.addEventListener('hashchange', showSectionFromHash);
+			// Quand on charge la page (ou si on change le hash manuellement)
+			window.addEventListener('load', showSectionFromHash);
+			window.addEventListener('hashchange', showSectionFromHash);
 		</script>
 
 		<script>
@@ -397,7 +399,7 @@ window.addEventListener('hashchange', showSectionFromHash);
 				const newRow = document.createElement('div');
 				newRow.classList.add('input-group');
 				newRow.innerHTML = `
-					<input type="text" placeholder="SoundCloud, Youtube, Spotify, ...">
+					<input type="text" name="message" placeholder="SoundCloud, Youtube, Spotify, ...">
   					<button type="button" onclick="delete_row(event)">x</button>
 				`;
 
@@ -410,36 +412,53 @@ window.addEventListener('hashchange', showSectionFromHash);
                 const rowToDelete = ev.target.closest('.input-group');
                 rowToDelete.remove();
             };
+
+			function faire() {
+				document.getElementById("submit").classList.remove('visible')
+			}
 		</script>
 
 		<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const toggle = document.getElementById("identify");
-  const toggleText = document.getElementById("identify_label");
+			document.addEventListener("DOMContentLoaded", () => {
+				const toggle = document.getElementById("identify");
+				const toggleText = document.getElementById("identify_label");
 
-  // Force ON au chargement (même si le navigateur avait mémorisé OFF)
-  toggle.checked = true;
-  toggleText.innerHTML = "&nbsp;&nbsp;Oui";
+				// Force ON au chargement (même si le navigateur avait mémorisé OFF)
+				toggle.checked = true;
+				toggleText.innerHTML = "&nbsp;&nbsp;Oui";
 
-  // Gérer les changements utilisateur
-  toggle.addEventListener("change", () => {
-    toggleText.innerHTML = toggle.checked ? "&nbsp;&nbsp;Oui" : "&nbsp;&nbsp;Non";
-  });
-});
-</script>
-
+				// Gérer les changements utilisateur
+				toggle.addEventListener("change", () => {
+					toggleText.innerHTML = toggle.checked ? "&nbsp;&nbsp;Oui" : "&nbsp;&nbsp;Non";
+				});
+			});
+		</script>
 
 		<script>
-			const scriptURL = "https://script.google.com/macros/s/AKfycbw0fcxgSkuVUWhspMbBAslPYBVCxIrZyjc2K5ALXOIeN-Gq0no214azDIniVUVP21HG/exec";
+			const scriptURL = "https://script.google.com/macros/s/AKfycbzFQgr4S5aTutBp2xeHxvJgZ0lbL0yzya_Urr0UPhIir8KsHV6mWtTPRJI1Ox5qCbMf/exec";
 			const form = document.getElementById("myForm");
 			const status = document.getElementById("status");
+			const toggle = document.getElementById("identify");
+			const toggleText = document.getElementById("identify_label");
 
 			form.addEventListener("submit", e => {
 				e.preventDefault();
+
+				let messagesElements = form.elements['message'];
+				if (!messagesElements.length) {
+					// S'il n'y a qu'un seul champ, on le met dans un tableau
+					messagesElements = [messagesElements];
+				}
 				
+				// Récupérer tous les champs ayant name="message"
+				const messages = Array.from(messagesElements)
+				.map(el => el.value.trim())
+				.filter(v => v !== "");
+
 				const data = {
-					message: form.message.value,
-					instagram: form.instagram.value
+					message: messages.join(" | "),
+					instagram: form.instagram.value,
+					identifier: toggle.checked ? "oui" : "non"
 				};
 
 				fetch(scriptURL, {
@@ -447,13 +466,25 @@ document.addEventListener("DOMContentLoaded", () => {
 					body: JSON.stringify(data)
 				})
 				.then(res => res.json())
-				.then(response => {
-					status.textContent = "✅ Données enregistrées !";
+				.then(() => {
+					document.getElementById("concept").style.display = "none";
+					form.style.display = "none";
+					//status.textContent = "✅ Données enregistrées !";
+					status.innerHTML = `
+						✅ Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
+						PS : Si certains sons ne matchent pas avec le reste, on les garde pour un prochain set :)
+					`;
+					/*
+					<h4 style="display: none;">PS : C'est normal que tes sons n'apparaissent pas tout de suite dans la liste des sons
+						proposés, c'est le temps qu'on la mette à jour (1 fois/jour).<br>
+						Edit PS : Merci pour ta proposition, on va écouter ça avant de l'ajouter à la liste des sons proposés.<br>
+						PS2 : Si certains sons ne matchent pas avec le reste, on les garde pour un prochain set :)</h4>
+					*/
 					form.reset();
+					toggleText.innerHTML = "&nbsp;&nbsp;Oui";
 				})
-				.catch(err => {
-					console.error("Erreur :", err);
-					status.textContent = "❌ Erreur lors de l’envoi";
+				.catch(() => {
+					status.innerHTML = "❌ Erreur de soumission, tu peux envoyer un DM à <a href='https://www.instagram.com/z2z.music/' target='_blank' rel='noopener noreferrer'>@z2z.music</a>";
 				});
 			});
 		</script>

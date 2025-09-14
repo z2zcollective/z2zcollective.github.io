@@ -297,7 +297,7 @@
 						<label for="message" style="margin-bottom: 7px;">Nom ou lien du son :</label>
 						<input type="text" id="message" name="message" placeholder="SoundCloud, Youtube, Spotify, ..." required>
 					</div>
-					<button type="button" class="form_button" onclick="add_row()">+ Ajouter un son</button>
+					<button type="button" class="form_button" onclick="add_song()">+ Ajouter un <span id="song_nb">2</span>ème son</button>
 				
 					<div class="form-group" style="margin-bottom: 25px;">
 						<label for="instagram" style="margin-bottom: 7px;">Ton @ sur Insta (suis-nous !):</label>
@@ -381,28 +381,35 @@
 		</script>
 
 		<script>
-			function add_row() {
+			function change_song_nb() {
+				let messagesElements = form.elements['message'];
+				if (!messagesElements.length) {
+					// S'il n'y a qu'un seul champ, on le met dans un tableau
+					messagesElements = [messagesElements];
+				}
+				document.getElementById("song_nb").textContent = messagesElements.length+1;
+			}
+
+			function add_song() {
 				// Create a new row with input field and delete button
 				const newRow = document.createElement('div');
 				newRow.classList.add('input-group');
 				newRow.innerHTML = `
 					<input type="text" name="message" placeholder="SoundCloud, Youtube, Spotify, ...">
-  					<button type="button" onclick="delete_row(event)">x</button>
+  					<button type="button" onclick="delete_song(event)">x</button>
 				`;
 
 				// Append the new row to the container
 				document.getElementById('songs_inputs').appendChild(newRow);
+				change_song_nb();
             };
 
-			function delete_row(ev) {
+			function delete_song(ev) {
                 // Find the row and remove it from the DOM
                 const rowToDelete = ev.target.closest('.input-group');
                 rowToDelete.remove();
+				change_song_nb();
             };
-
-			function faire() {
-				document.getElementById("submit").classList.remove('visible')
-			}
 		</script>
 
 		<script>
